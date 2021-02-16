@@ -1,0 +1,33 @@
+version: '3.7'
+
+# SERVICES
+services:
+  pg1-master:
+    image: postgres:10
+    ports:
+      - "5100:5432"
+    environment:
+      DEBUG: "true"
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+      POSTGRES_PASSWORD: postgres
+    command: postgres -c config_file=/etc/postgresql.conf
+    volumes:
+      - ./pg1-master/config/pg_hba.conf:/etc/conf.d/pg_hba.conf
+      - ./pg1-master/config/postgresql.conf:/etc/postgresql.conf
+      - ./pg1-master/initdb:/docker-entrypoint-initdb.d
+  pg2-master:
+    image: postgres:10
+    ports:
+      - "5200:5432"
+    environment:
+      DEBUG: "true"
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+      POSTGRES_PASSWORD: postgres
+    command: postgres -c config_file=/etc/postgresql.conf
+    volumes:
+      - ./pg2-master/config/pg_hba.conf:/etc/conf.d/pg_hba.conf
+      - ./pg2-master/config/postgresql.conf:/etc/postgresql.conf
+      - ./pg2-master/initdb:/docker-entrypoint-initdb.d
+
