@@ -1,10 +1,9 @@
 # pg-mm-replica
-PostgreSQL Master - Master logical bi-directional evet replication.
+PostgreSQL Master - Master logical bi-directional event replication.
 
 ## How to run
 
 Just to run `docker-compose up` and three PostgreSQL docker containers start running.
-
 
 ## How to enable replication
 
