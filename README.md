@@ -11,10 +11,10 @@ After docker-compose starts all three PostgreSQL servers, follow these steps to 
 
 ```
 # connect to the pg1-master and run the following SQL
-CREATE SUBSCRIPTION pg1_subscription_all_tables CONNECTION 'dbname=events host=pg2-master user=replicator password=replicator' PUBLICATION pg2_publication_all_tables;
+CREATE SUBSCRIPTION subscription_all_tables CONNECTION 'dbname=events host=pg2-master user=replicator password=replicator' PUBLICATION publication_all_tables;
 
 # connect to the pg2-master and run the following SQL
-CREATE SUBSCRIPTION pg2_subscription_all_tables CONNECTION 'dbname=events host=pg1-master user=replicator password=replicator' PUBLICATION pg1_publication_all_tables;
+CREATE SUBSCRIPTION subscription_all_tables CONNECTION 'dbname=events host=pg1-master user=replicator password=replicator' PUBLICATION publication_all_tables;
 ```
 
 Now you can insert events into both masters and the data will be replicated.

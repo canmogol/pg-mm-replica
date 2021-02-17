@@ -14,18 +14,19 @@ psql -v ON_ERROR_STOP=1 --username "events" -d "events"  <<-END
   (
     cluster varchar default '1.3.6.1.4.1.56465.100.2'::character varying,
     id serial,
-    created time default now(),
+    created timestamptz default now(),
     event jsonb not null,
     type varchar not null,
     PRIMARY KEY (cluster, id)
   );
+  CREATE INDEX event_type_hash_index ON event USING hash(type);
   alter table event owner to events;
   GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO events;
   GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO replicator;
 END
 
 psql -v ON_ERROR_STOP=1 --username "postgres" -d "events" <<-END
-  CREATE PUBLICATION pg2_publication_all_tables FOR ALL TABLES;
+  CREATE PUBLICATION publication_all_tables FOR ALL TABLES;
 END
 
 psql -v ON_ERROR_STOP=1 --username "postgres" -d "events" <<-END
