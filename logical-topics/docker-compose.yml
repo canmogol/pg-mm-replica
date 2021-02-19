@@ -3,7 +3,7 @@ version: '3.7'
 # SERVICES
 services:
   pg1-master:
-    image: postgres-bgwrk:11
+    image: canmogol/postgres-bgwrk:11
     ports:
       - "5100:5432"
     environment:
@@ -17,7 +17,7 @@ services:
       - ./pg1-master/config/postgresql.conf:/etc/postgresql.conf
       - ./pg1-master/initdb:/docker-entrypoint-initdb.d
   pg2-master:
-    image: postgres-bgwrk:11
+    image: canmogol/postgres-bgwrk:11
     ports:
       - "5200:5432"
     environment:

@@ -29,7 +29,8 @@ insert into event(event, type) values ('{"b":2}', 'kv');
 select * from event;
 ```
 
-Also, you can stop one of the masters and continue to insert events on the other master. The stopped master will replicate the new entries when the it is started again.
+Also, you can stop one of the masters and continue to insert events on the other master. 
+The stopped master will replicate the new entries when it's started again.
 
 ```
 # stop the second master
