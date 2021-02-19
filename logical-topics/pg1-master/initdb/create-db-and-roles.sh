@@ -54,6 +54,7 @@ psql -v ON_ERROR_STOP=1 --username "${_database_username}" -d "${_database_name}
     cluster_oid varchar default '${_database_cluster_oid}'::character varying,
     incremental_id serial,
     creation_time timestamptz default now(),
+    headers jsonb default '{}' not null,
     topic_name varchar not null,
     key_type varchar not null,
     value_type varchar not null,
@@ -104,6 +105,7 @@ psql -v ON_ERROR_STOP=1 --username "${_privileged_username}" -d "${_database_nam
         cluster_oid varchar default ''' || clusterOID || '''::character varying,
         incremental_id serial,
         creation_time timestamptz default now(),
+        headers jsonb default ''{}'' not null,
         key ' || NEW.key_type || ' not null,
         value ' || NEW.value_type || ' not null,
         PRIMARY KEY (cluster_oid, incremental_id)
